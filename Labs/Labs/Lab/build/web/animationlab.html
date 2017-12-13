@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Absolute Positioning</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #skate {
+                width:  255px; 
+                height: 248px;
+                position: absolute;
+                top: 280px;
+                left: 50px;
+                background-image: url(pics/skate.png);
+                z-index: 1;
+            }
+
+            #shape{
+                height: 10px; 
+                width: 60px;
+            }
+
+            .skate1 {
+                background-position-x: -33px, -38px; /* x then y */  
+            }
+            .skate2 {
+                background-position-x:  -307px -44px;/* x then y */  
+            }
+            .skate3 {
+                background-position-x: -503px -46px;  /*x then y   */
+            }
+            .skate4 {
+                background-position-x: -795px -42px; /* x then y */  
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+        <h3>Click to Start/Stop Animation</h3>
+        <h3>Click to Start/Stop Boy Animation</h3>
+
+        <div id='bg'>
+
+        </div>
+
+        <div id="skate" ></div>
+
+
+
+        <script>
+            "use strict";
+
+            // just saves me from having to type document.getElementById(id) all the time...
+            function my$(id) {
+                return document.getElementById(id);
+            }
+            // this function acts like a constructor in that it returns an object. 
+            // the function builds the object (adding any properties and methods) and then returns the object.
+            function makeBackground(id) {
+
+                // get reference to the HTML element (in this case, a div that will hold the background image). 
+                var f = my$(id);
+
+                f.style.position = "relative";
+                f.style.backgroundImage = "url(pics/img.jpg)";
+
+                // A div with no content (and only background image) must have height and width 
+                // or it will have no height or width (not be visible). 
+                f.style.width = "730px";
+                f.style.height = "480px";
+                f.imgTop = 100;
+
+                // This version NOT passing in the id of a ball/div.
+                f.makeAnimation = function (params) {
+
+                    // get reference to the HTML element (in this case, a div) with id "ball" 
+                    var b = document.createElement("div");
+
+                    b.style.backgroundImage = "url(" + params.image + ")";
+
+                    b.style.position = "absolute";
+                    b.style.zIndex = 1;
+                    b.style.width = params.width + "px";
+                    b.style.height = params.height + "px";
+                    b.style.top = params.top + "px";
+                    b.style.left = params.left + "px";
+                    b.rightSpeep = 9;
+                    b.topSpeed = 19;
+                    // add a custom method to this object 
+                    b.moveTo = function (top, left) {
+
+                        if ((left + parseInt(b.style.width) > parseInt(f.style.width)) || (left < 0)) {
+                            // the properties after ".style" must be valid CSS properties and setting these will make 
+                            // a visual changes. 
+                            b.leftSpeed = -b.leftSpeed;
+                        } else {
+                            b.style.left = left + "px";
+                        }
+
+                        if ((top + parseInt(b.style.height) > parseInt(f.style.height)) || (top < f.imgTop)) {
+                            // the properties after ".style" must be valid CSS properties and setting these will make 
+                            // a visual changes. 
+                            b.topSpeed = -b.topSpeed;
+                        } else {
+                            b.style.top = top + "px";
+                        }
+                    };
+                    // add a second custom method to object b
+                    b.adjustPosition = function () {
+                        console.log("adjusting position");
+                        b.moveTo(parseInt(b.style.top) + this.topSpeed,
+                                parseInt(b.style.left) + this.leftSpeed);
+                    };
+
+                    var poseList = ["19px 0px", "-252px 0px", "-800px 0px", "-1000px 0px"];
+                    var poseIndex = 0;
+                    var skateDiv = document.getElementById("skate");
+                    skateDiv.style.backgroundPosition = poseList[poseIndex];
+
+                    var isAnimating = false;
+
+                    function changeImage() {
+                        poseIndex = poseIndex + 1;
+                        if (poseIndex >= poseList.length) {
+                            poseIndex = 0;
+                        }
+                        skateDiv.style.backgroundPosition = poseList[poseIndex];
+                        if (isAnimating) {
+                            setTimeout("changeImage()", 250);
+                        }
+                    }
+                    // add an event handler method to object b
+                    b.isMoving = false;
+                    b.onclick = function () {
+
+                        // When using setInverval, the variable "this" (which initially means the 
+                        // ball that was clicked) gets changed to something else (related to the 
+                        // setInterval code). So, we have to "save" a reference to the ball that 
+                        // was clicked (var self = this;)
+                        var self = this;
+                        if (self.isMoving) {
+                            clearInterval(self.interval);
+                            self.isMoving = false;
+                        } else {
+                            // setInterval takes two parameters: a function and how often the function should be called.
+                            var repeatingFn = function () {
+                                self.adjustPosition();
+                                changeImage();
+                            };
+                            self.interval = setInterval(repeatingFn, 70);
+                            self.isMoving = true;
+                        }
+
+                    };
+
+                    f.appendChild(b);
+
+                    return b;
+
+                };
+
+                return f;
+            }
+
+
+           
+            // Global Declarations. 
+            var myBgObj = makeBackground('bg');
+            var myAnimation = myBgObj.makeAnimation(
+                    {
+                        image: "pics/basketball.png",
+                        width: 328,
+                        height: 228,
+                        left: 320,
+                        top: 140
+
+                    }
+            );
+            var myAnimation2 = myBgObj.makeAnimation(
+                    {
+                        image: "pics/basketball.png",
+                        width: 328,
+                        height: 228,
+                        left: 120,
+                        top: 140
+
+                    }
+            );
+
+        </script>
+    </body>
+</html

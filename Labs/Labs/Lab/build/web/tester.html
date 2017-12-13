@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            body{
+
+                background-color: black;
+                 background-image: url(pics/bk4.jpg);
+                color:white;  
+           
+            }
+            input{
+                font-size: 15px;
+                width: 118px; 
+                background: wheat;
+                border: solid 3px #FAA330;
+            }
+            h1{
+                font-style: italic;
+                font-size: 45px;
+                color: Black; 
+                padding-left: 430px;
+                align-content: center;
+            }
+
+              h2{
+                font-style: italic;
+                font-size: 22px;
+                color: black; 
+            }
+            
+            h3{
+                font-style: italic;
+                font-size: 22px;
+                color: white; 
+            }
+            
+            
+             h4{
+                font-style: italic;
+                font-size: 35px;
+                color: black; 
+               
+            }
+            
+            h5{
+                font-style: italic;
+                font-size: 35px;
+                color: black; 
+               
+            }
+            
+            
+            button{
+
+                background-color:black; 
+                color:white;
+                font-size: 15px;
+                font-style: italic; 
+                align-content: center; 
+                 border: solid 3px #FAA330;
+                border-radius: 5%;
+                
+
+            }
+            
+            #secondRoomDiv{
+                
+                opacity: 60%;
+            }
+            
+        </style>
+
+
+    </head>
+    <body>
+
+
+        <h1>JavaScrit FrameWork</h1>
+       <h5> <a href="index.html">Home</a></h5>
+        
+
+        <div id ="shape1">      </div>    
+        <button onclick="changeCircelColor()"> Change Title Bar Color</button>  <input id="newColor">
+        <button onclick="changeCircelText()"> Change Title</button>  <input id="newText">
+ 
+        
+        <h4>Rooms</h4> 
+   
+        <div id ="shape2">      </div>    
+        <button onclick="changeTextBoxColor()"> Change Text Color</button>  <input id="newBox">
+        <button onclick="changeText()"> Change Slogan</button>  <input id="newTbox">
+
+<h4>Deluxe Rooms</h4> 
+        <div id="firstRoomDiv"> 
+        </div>
+        <button onclick='firstRoomObj.setRoomCapacity(my$("roomcapacity").value)'>New Room Capacity:</button> 
+        <input id="roomcapacity">
+
+        <button onclick='firstRoomObj.changePrice(my$("changeTonewPrice").value)'>Set New Price:</button>
+        <input id="changeTonewPrice">
+
+        
+        <div id="secondRoomDiv"> 
+        </div>
+        
+        <button onclick='secondRoomObj.setRoom2Capacity(my$("room2capacity").value)'>New Room Capacity:</button> 
+        <input id="room2capacity">
+
+        <button onclick='secondRoomObj.changePrice2(my$("change2newPrice").value)'>Set New Price:</button>
+        <input id="change2newPrice">
+       
+        
+        <script src ="fw.js"></script>
+        <script>
+            "use strict";
+            function my$(shape) {
+                return document.getElementById(shape);
+            }
+
+
+            var shapeF = MakeFw();
+
+            var myTitle = shapeF.MakeTitle({
+
+                id: "shape1",
+                size: 100,
+                border: "thick solid black",
+                text: "Hotel Booking",
+                color:"#FAA330"
+              
+
+            });
+            
+            
+              var myText = shapeF.MakeText({
+
+                id: "shape2",
+                size: 100,
+                border: "thick solid black",
+                text: "Make yourself at home is our slogan. We offer the best beds in the industry. \n\
+        Sleep well and rest well.",
+                color:"grey"
+              
+
+            });
+            
+
+            function changeCircelColor() {
+                myTitle.changeColor(my$('newColor').value);
+
+            }
+            
+             function changeCircelText() {
+                myTitle.changeText(my$('newText').value);
+
+            }
+            
+            
+            
+            function changeTextBoxColor() {
+                myText.changeBoxColor(my$('newBox').value);
+
+            }
+            
+            
+            function changeText() {
+                myText.changeTextbox(my$('newTbox').value);
+
+            }
+            
+            
+
+            var roomFW = MakeFw();
+
+
+            var noRoom = roomFW.MakeRoom(); // no parameter object at all
+            noRoom = roomFW.MakeRoom({roomcapacity: "room and capacity"}); // parameter object, but no id property
+            noRoom = roomFW.MakeRoom({id: "notThere"}); // parameter object with invalid id 
+
+
+          var firstRoomObj = roomFW.MakeRoom({
+                id: "firstRoomDiv",
+                image: "pics/room_deluxe.jpg"
+
+            });
+            
+            
+             var room2FW = MakeFw();
+
+
+            var no2Room = room2FW.MakeRoom2(); // no parameter object at all
+            no2Room = room2FW.MakeRoom2({room2capacity: "room and capacity"}); // parameter object, but no id property
+            no2Room = room2FW.MakeRoom2({id: "notThere"}); // parameter object with invalid id 
+
+            
+            
+            var secondRoomObj = room2FW.MakeRoom2({
+                id: "secondRoomDiv",
+                image: "pics/room_double.jpg"
+
+            });
+           
+
+
+        </script>
+
+
+
+    </body>
+</html>

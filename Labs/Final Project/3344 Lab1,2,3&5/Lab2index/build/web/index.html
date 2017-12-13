@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href ="stylesheet.css" rel="stylesheet" type="text/css">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    </head>
+    <body>
+
+        <div id ="container">
+            <!----Page1----> 
+
+            <div ng-app="">
+                <div ng-include src="'top.html'"> </div>
+
+                <div id="index" class="sng-page">
+               <div id="displayPic"> </div>
+                </div>
+
+               
+
+                <!----END OF FORM------>
+
+
+                <!-----PAge 3---->
+
+
+
+                <!-- Add Google Maps 
+        <script>
+        function myMap()
+        {
+          myCenter=new google.maps.LatLng(41.878114, -87.629798);
+          var mapOptions= {
+            center:myCenter,
+            zoom:12, scrollwheel: false, draggable: false,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+          };
+          var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+        
+          var marker = new google.maps.Marker({
+            position: myCenter,
+          });
+          marker.setMap(map);
+        }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+                -->
+
+
+
+
+
+                <div id ="break"></div>
+
+                <div ng-include src="'bottom.html'"> </div>
+
+
+            </div>
+        </div>
+        
+        
+        
+        
+       
+        
+        
+    </body>
+
+</html>

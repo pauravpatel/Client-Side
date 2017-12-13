@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href ="stylesheet.css" rel=" stylesheet" type="text/css">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        
+       <!-- <title>Florida Trip</title>-->
+       
+    </head>
+    <body>
+<div ng-app="">
+    <div ng-include src="'top.html'"> </div> <!-- will insert "top.html" code here --><!-- inside this div you can use Angular directives -->
+                    <!-- Must stop the floating so that elements below (e.g., content) 
+            don't float up into here. -->
+            <div class="stopFloat"></div>
+        </div>
+
+        <div id="content">
+            <div class="width66Pct">
+
+                <p>
+                    Florida is a South Atlantic state bordered by Alabama and Georgia to the north, 
+                    the Atlantic Ocean to the east, the Straits of Florida to the south, 
+                    and the Gulf of Mexico to the west. It is the southeastern-most state. 
+                    Cuba is only about 100 miles away from the southernmost tip of the state's peninsula. 
+                    An average of over 5,000 people, mostly retirees and Haitian and Cuban refugees, permanently move to the state each 
+                    week. This population increase of 32 percent between the 1980 and 1990 censuses has made Florida the fourth most populous state; 
+                    only the smaller states of Nevada and Arizona had a greater percentage of population growth.
+                </p>
+
+                <!-- unordered (bulleted) list, li means "list item" -->
+                <ul>
+                    <li>
+                        <strong>About Florida</strong>: Florida is made up mostly of a large 
+                        peninsula that juts out into the Atlantic Ocean. The northwest part of 
+                        the state is a panhandle (a narrow strip of land that sticks out like the
+                        handle of a pan). Islands called the Florida Keys extend from Biscayne Bay 
+                        into the Gulf of Mexico. 
+                    </li>
+
+                    <li>
+                        <strong>Florida</strong>: 
+                        <strong><em style="margin-right:0.5ex;"></em></strong> 
+                        Forty million tourists visit Florida annually. Some relax in the sunshine at popular 
+                        resorts like Daytona Beach, Fort Lauderdale, or Palm Beach. Others vacation at Walt 
+                        Disney World, one of the most popular theme parks in the world, located near Orlando 
+                        or go to Gainesville, home of the Gators.
+                    </li>
+                    <li>
+                        <strong>Florida Economy</strong>: In addition to tourism, Florida has many 
+thriving industries. Delicious oranges and grapefruits are grown in Florida, making it nation's citrus fruits capital. 
+                        It is fine (and recommended) to use pixels to measure things vertically 
+                        (like font sizes, padding, and margins), but try to use percentages for widths. 
+                        
+                    </li>
+
+                </ul>  
+
+            </div>
+            <div class="width33Pct" >
+
+                <img src="pics/Florida1.jpg">
+
+                <img src="pics/Florida2.jpg">
+
+                <img src="pics/Florida3.jpg">
+                <br/>
+            </div> 
+
+            <!-- Must stop the floating so that elements below don't float up into here. -->
+            <div class="stopFloat"></div>
+        </div> <!-- content. [[Keep track of nesting]] -->
+        <div ng-include src="'bottom.html'"> </div> <!-- inserts "bottom.html" code -->
+    </body>
+</html>

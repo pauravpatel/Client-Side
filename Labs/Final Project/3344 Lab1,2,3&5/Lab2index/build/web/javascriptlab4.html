@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javacript</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            
+            
+            body{
+
+                background-color: black;
+                 background-image: url(pics/bk5.jpg);
+                color:red;  
+           
+            }
+
+            p {
+                font-weight: bold;
+                margin-top:8px;
+                margin-bottom: 0px;
+            }
+            .display1 {
+                text-align:center; 
+                border-radius:5px; 
+                width:270px; 
+                padding:30px; 
+                box-sizing:border-box;
+                float:left;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            .display2 {
+                text-align:center; 
+                border-radius:5px;            
+                width:270px; 
+                padding:30px; 
+                box-sizing:border-box;
+                float:left;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            .display3 {
+                text-align:left; 
+                border-radius:5px;            
+                width:350px; 
+                padding:30px; 
+                box-sizing:border-box;
+                float:left;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            .stopFloat {
+                clear:both;
+            }
+            
+            h1{
+                font-style: italic;
+                font-size: 45px;
+                color: white; 
+                padding-left: 430px;
+                align-content: center;
+            }
+            
+
+        </style>
+    </head>
+    <body>
+        
+        <h1>JavaScrit FrameWork</h1>
+        
+        
+        <div class="display1"><p>Demo Room</p>
+            <div style="background-color:lightblue; width:300px; height: 250px;" >
+                <br/>
+                <img src="pics/room_deluxe.jpg" width="260" alt="JavaScript" style="border-radius:5px;"> 
+                <br/>Code: Deluxe
+                <br/>Title: Deluxe Rooms
+                <br/>Description: Comfy
+            </div>
+        </div>
+        <div class="display2"><p>First Room Object</p>
+            <div id="firstBkDiv"></div>
+        </div>
+        
+        <div class="display2"><p>Second Room Object</p>
+            <div id="secondBkDiv"></div><br/>
+            <input type = "text" id="priceChangeRatio" value="150"><br/>
+            <br/><input type="button" value="Change Room Price:" onclick ="changePrice()">
+        </div>
+        
+        <div class="display2"><p>Third Room Object</p>
+        <div id="thirdBkDiv"></div>
+        <div>See Different Rooms: 
+            <select id="newImageSelect" onchange="changeImage()">
+                <option value="default.png">default</option>
+                <option value="room_deluxe.jpg">Deluxe Rooms</option>
+                <option value="room_double.jpg">Double Rooms</option>
+                <option value="room_single.jpg">Single Rooms</option>
+                <option value="bed1.jpg">Luxery Rooms</option>
+                              
+            </select>
+            </div>
+        </div>
+        <div class="stopFloat"></div>
+        
+        <div class="display3"><p>First Select Flight Object </p>
+            <div id="firstDiv"></div>
+        </div>
+        <div class="display3"><p>Flight Object</p>
+            
+            <div id="secondDiv"></div><br/>
+            <p>Update Flight Info </p>
+            <br/>Price: <input type="text" id="priceChange" value="4500"><br/>
+            <br/>Description: <input type="text" id="desChange" value="Flight Prices"><br/>            
+            <br/>Flight Type: <input type="text" id="verChange" value="Air Bus"><br/>
+            <br/><input type="button" value="Update Flight" onclick ="updateFlight()">
+            <input type="button" value="Increase price 5%" onclick="increasePrice()">
+        </div>
+        
+        <script src="fw.js"></script>
+        <script>
+            "use strict";
+            function $(code) {
+                return document.getElementById(code);
+            }
+            // create framework object
+            var productFW = MakeProductFw();
+
+            // testing for the required id property
+            var Room = productFW.MakeRoom(); // no parameter object at all
+            Room = productFW.MakeRoom({title: "There is no title"}); // parameter object, but no id property
+            Room = productFW.MakeRoom({code: "notThere", title: "Unknow Title"}); // parameter object with invalid id 
+
+            // testing for non numeric parameter properties
+            var fristRoomObj = productFW.MakeRoom({
+                code: "firstBkDiv",
+                image: "pics/room_single.jpg",
+                imgWidth: 200,         // will get replaced with default value by the framework
+                title: "Single Room",
+                price: "no decided price",         // will get replaced with default value by the framework
+                padding: 20, // will get replaced with default value by the framework
+                backgroundColor: "pink"
+            });
+
+            // testing all parameter properties properly specified
+            var secondRoomObj = productFW.MakeRoom({
+                code: "secondBkDiv",
+                image: "pics/room_double.jpg",
+                imgWidth: 200,
+                title: "Double Room",
+                price: 100,
+                padding: 20,
+                backgroundColor: "yellow"
+            });
+
+            // testing the default parameter properties. Nothing specified except id (which is required)
+            var thirdRoomObj = productFW.MakeRoom({
+                code: "thirdBkDiv",
+                image: "pics/Bags.jpg",
+                title: "Rooms",
+                imgWidth: 260,
+                
+                padding: 10,
+                backgroundColor: "gray"
+                
+            });       
+
+            function changePrice() {
+                secondRoomObj.changePrice($("priceChangeRatio").value);
+                
+            }
+
+            function changeImage() {
+                var selectTag = $("newImageSelect");
+                var selectedText = selectTag.options[selectTag.selectedIndex].text;
+                console.log("selected Text is "+selectedText+ " and selected value is "+selectTag.value); 
+                var imageUrl = "pics/" + selectTag.value;
+                var newDescrition = selectedText;
+                thirdRoomObj.setImage(imageUrl);
+                thirdRoomObj.setTitle(newDescrition);
+                console.log(thirdRoomObj);
+            }
+                        
+            // First MakeFlightPrice Object
+            var firstFPObj = productFW.MakeFlightPrice({
+                code: "firstDiv",         
+                backgroundColor: "wheat"
+            });
+             // Second MakeFlightPrice Object
+            var secondFPObj = productFW.MakeFlightPrice({
+                code: "secondDiv",         
+                backgroundColor: "wheat"
+            });           
+            //firstFPObj.display();
+            function updateFlight() {
+                secondFPObj.changePrice($("priceChange").value); 
+                secondFPObj.setDescription($("desChange").value);
+                secondFPObj.changeVersion($("verChange").value);
+                console.log(secondFPObj);
+            }
+            function increasePrice(){
+                secondFPObj.raisePrice();
+                console.log(secondFPObj);
+            };
+        </script>
+    </body>
+</html>

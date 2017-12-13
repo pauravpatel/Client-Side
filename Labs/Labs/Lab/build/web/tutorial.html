@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Tutorial</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href ="stylesheet.css" rel="stylesheet" type="text/css">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    </head>
+    <body>
+        <div id ="container">
+         <div ng-app="">
+                <div ng-include src="'top.html'"> </div>
+        
+        <h1>Portfolio Gallery</h1>
+
+        <h2>Introduction and Overview</h2>
+
+        <p>    Portfolio Gallery is an elegant image and portfolio display theme. </p>
+
+        <p>  In general portfolio gallery is gallery where user can create a gallery 
+            to display pictures as well as differentiate them in different 
+            categories.  </p>
+
+      <p>  <a href=https://www.w3schools.com/howto/howto_js_portfolio_filter.asp>Click here to see an example</a></p>
+
+        <h2> Download the Zipped File of the framework 
+            JavaScript file and an example HTML file
+            as a guide. 
+    <p>
+     <a href="EditedTutorial.zip">Click here to download zip file</a>
+     </p>
+        </h2>
+     
+      <a href="EditedPortfolio.html">Resubmitted</a><br>
+      <a href="portfolio.html">Demo 1</a> <br>
+      <a href="portfolio2.html">Demo 2</a>
+
+        <h2> Instructions</h2>
+
+        <p> First create a div and give it an ID.
+            This will be the container div for the portfolio gallery. For example in my tutorial,<br> i have passed it in as
+            &lt;id="portfolio"&gt;</p>
+
+       <p> Secondly, create divs inside the first div and give them IDs.
+        There also will be div for each button and category.</p>
+
+        <p>  Now add the following code at the body tag of the code: </p>
+
+
+        <pre> &lt;script src='framework.js'&gt;&lt;/script&gt; </pre>
+     <p>
+            Now let's create an object of the framework. 
+            Type the following code right before the end of the body tag:
+        </p>
+
+        <pre> &lt;script&gt;
+            var framework = new Framework();
+            framework.makeFramework({
+                id: "portfolio",
+                buttonsDivId: "buttons",
+                categories: ["nature", "cars", "people", "all"]
+            });&lt;/script&gt; </pre>
+
+
+       
+          
+          <h2>  You can supply the following when creating Object.</h2>
+            
+            
+          <li> id - The ID of the container div for the portfolio gallery [required]</li>
+          <li> buttons id - The ID for the button div for the radio button click [required]</li>
+          <li> nature - This Id is to set one of the category [require]</li>
+          <li>car- This Id is to set one of the category [require]</li>
+          <li>people-This Id is to set one of the category [require]</li>
+          <li> all-This Id is to set one of the category [require]</li>
+          
+          <h2>List of functions used</h2>
+          
+          
+          
+          <h2>OnClick</h2>
+          
+         <p> This code allows user to click event. So once user clicks the radio button
+          it will select category accordingly. </p>
+         
+         <pre>
+
+          buttonsDiv.addEventListener("click", function (event) {<br>
+            if (event.target.attributes[0].value === "radio") {<br>
+
+                if (event.target.id !== "all") {<br>
+                    hideRest(event.target.id);<br>
+                } else {<br>
+                    displayAll();<br>
+                }<br>
+            }<br>
+        });
+         </pre> 
+        
+        <h2>Display All</h2>
+        
+       <p> Display all function is for displaying all the categories. So once the 
+        user clicks on the show all button it will unite all the categories
+        in the file and show final output. </p>
+        
+       <pre>
+          function displayAll() {<br>
+            for (var i = 0; i < categories.length; i++) {<br>
+                var hidingDivs = portfolio.getElementsByClassName(categories[i]);<br>
+                for (var j = 0; j < hidingDivs.length; j++) {<br>
+                    hidingDivs[j].classList.add("show");<br>
+                }<br>
+            }<br>
+        }<br>
+          </pre>
+         <h2>Hide Not Selected</h2>
+         
+       <p>  HideRest function is used for blocking the categories that 
+         are not being display while user has selected one of the other categories. </p>
+         
+       <pre>
+        function hideRest(visibleCategory) {<br>
+            for (var i = 0; i < categories.length; i++) {<br>
+                var hidingDivs = portfolio.getElementsByClassName(categories[i]);<br>
+                for (var j = 0; j < hidingDivs.length; j++) {<br>
+                    hidingDivs[j].classList.remove("show");<br>
+                }<br>
+            }<br>
+
+            var divs = portfolio.getElementsByClassName(visibleCategory);<br>
+            for (var i = 0; i < divs.length; i++) {<br>
+                divs[i].classList.add("show");<br>
+            }<br>
+        }
+          </pre>
+          <h2>Conclusion</h2>
+          
+          <p>This tutorial can be used by anyone who is interested in making 
+          filtered portfolio gallery. They can use my framework and css to give effect.</p>
+          
+          <h2>References</h2>
+          
+             <li><a href="https://www.w3schools.com/howto/howto_js_portfolio_filter.asp">W3_Schools Portfolio Galley Demo</a> This how i got an idea on how portfolio gallery works. </li>
+             <li><a href="http://cis-linux2.temple.edu/~sallyk/cis3344/index.php">Professor Sally k</a> I also viewed some examples from professor Sallys Website  </li>
+
+            <div id ="break"></div>
+
+                <div ng-include src="'bottom.html'"> </div>
+        
+
+
+
+
+</div>
+            </div>
+
+    </body>
+</html>

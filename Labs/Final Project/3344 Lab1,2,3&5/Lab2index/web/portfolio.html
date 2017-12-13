@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Portfolio </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="custom.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <h2>FILTERED PORTFOLIO GALLERY</h2>
+
+        <div id="buttons">
+            <input type="radio" id="all" name="category" checked> Show all
+            <input type="radio" id="nature" name="category"> Nature
+            <input type="radio" id="cars" name="category"> Cars
+            <input type="radio" id="people" name="category"> People
+        </div>
+        <!-- Portfolio Gallery Grid -->
+        <div class="row" id="portfolio">
+            <div class="column nature">
+                <div class="content">
+                    <div class="content-overlay"></div>
+                    <img src="pics/mountain1.jpg" alt="Mountains" style="width:100%">
+
+                    <div class="content-details fadeIn-top fadeIn-right">
+                        <h3>This is a title</h3>
+                        <p>This is a short description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column nature">
+                <div class="content">
+                    <div class="content-overlay"></div>
+                    <img src="pics/mountain4.jpg"style="width:100%">
+
+                    <div class="content-details fadeIn-top fadeIn-right">
+                        <h3>This is a title</h3>
+                        <p>This is a short description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column nature">
+                <div class="content">
+                    <div class="content-overlay"></div>
+                    <img src="pics/mountain3.jpg" alt="Nature" style="width:100%">
+
+                    <div class="content-details fadeIn-top fadeIn-right">
+                        <h3>This is a title</h3>
+                        <p>This is a short description</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column cars">
+                <div class="content">
+                    <div class="content-overlay"></div>
+                    <img src="pics/car1.jpg"  style="width:100%" style="height:50%">
+
+                    <div class="content-details fadeIn-top fadeIn-right">
+                        <h3>This is a title</h3>
+                        <p>This is a short description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column cars">
+                <div class="content">
+                    <div class="content-overlay"></div>
+                    <img src="pics/car2.jpg" alt="Car" style="width:100%" style="height:50%">
+
+                    <div class="content-details fadeIn-top fadeIn-right">
+                        <h3>This is a title</h3>
+                        <p>This is a short description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column cars">
+                <div class="content">
+                    <div class="content-overlay"></div>
+                    <img src="pics/car3.jpg" alt="Car" style="width:100%">
+
+                    <div class="content-details fadeIn-top fadeIn-right">
+                        <h3>This is a title</h3>
+                        <p>This is a short description</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column people">
+                <div class="content">
+                    <div class="content-overlay"></div>
+                    <img src="pics/people1.jpg" alt="People" style="width:100%">
+
+                    <div class="content-details fadeIn-top fadeIn-right">
+                        <h3>This is a title</h3>
+                        <p>This is a short description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column people">
+                <div class="content">
+                    <div class="content-overlay"></div>
+                    <img src="pics/people2.jpg" alt="People" style="width:100%">
+
+                    <div class="content-details fadeIn-top fadeIn-right">
+                        <h3>This is a title</h3>
+                        <p>This is a short description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column people">
+                <div class="content">
+                    <div class="content-overlay"></div>
+                    <img src="pics/people3.jpg" alt="People" style="width:100%">
+
+                    <div class="content-details fadeIn-top fadeIn-right">
+                        <h3>This is a title</h3>
+                        <p>This is a short description</p>
+                    </div>
+                </div>
+            </div>
+            <!-- END GRID -->
+        </div>
+
+        <script src="framework.js"></script>
+        <script>
+            var framework = new Framework();
+            framework.makeFramework({
+                id: "portfolio",
+                buttonsDivId: "buttons",
+                categories: ["nature", "cars", "people", "all"]
+            });
+        </script>
+    </body>
+</html>

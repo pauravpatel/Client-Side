@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Auto Explosion</title>
+        <link href="stylesheet.css" rel="stylesheet" type="text/css" />
+        <style>
+            body {
+                /* I gave a non-white bg color so as to be sure that my 
+                images truly have a transparent background. */
+                
+                font-family: Tahoma, Geneva, sans-serif;
+            }
+            #explosion {
+                width:150px;
+                height:190px;
+                background-image:url(pics/ninjaShinbi.png);
+                border: thin solid black;
+               
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        
+        <div class="fire" id="pic1"> </div>         
+        <div class="fire" id="pic2"> </div>               
+        <div class="fire" id="pic3"> </div>               
+        <div class="fire" id="pic4"> </div>  
+        
+        
+
+        <h1>Java Script Animations</h1>
+        
+        <div id="explosion" ></div>
+        <input type="button" value="Advance Animation" onclick="changeImage()"/> 
+        <input type="button" value="Start Animation" onclick="startAnimation()"/> 
+        <input type="button" value="Stop Animation" onclick="stopAnimation()"/>
+
+        <script type="text/javascript">
+
+            var poseList = ["13px 0px", "-252px 0px", "-600px 0px", "-1000px 0px"];
+            var poseIndex = 0;
+            var explodeDiv = document.getElementById("explosion");
+            explodeDiv.style.backgroundPosition = poseList[poseIndex];
+
+            var isAnimating = false;
+
+            function changeImage() {
+                poseIndex = poseIndex + 1;
+                if (poseIndex >= poseList.length) {
+                    poseIndex = 0;
+                }
+                explodeDiv.style.backgroundPosition = poseList[poseIndex];
+                if (isAnimating) {
+                    setTimeout("changeImage()", 250);
+                }
+            }
+
+            function startAnimation() {
+                isAnimating = true;
+                changeImage();
+            }
+
+            function stopAnimation() {
+                isAnimating = false;
+            }
+
+        </script>
+    </body>
+</html>

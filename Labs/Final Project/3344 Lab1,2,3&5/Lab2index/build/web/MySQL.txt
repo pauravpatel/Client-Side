@@ -1,0 +1,3 @@
+User =	tug63393
+Password = aedihigh
+DB =	FA17_3344_1_tug63393

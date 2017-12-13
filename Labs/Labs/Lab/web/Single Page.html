@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)http://cis-linux2.temple.edu/~sallyk/cis3344/02_responsive_design/single-page-design.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- It's good practice for modern web design to include these meta tags  -->
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Single Page</title>
+
+        <style type="text/css">
+            html, body {
+                margin: 0;  /* remove any default spacing */
+                padding: 0; /* remove any default spacing */
+                 /* don't want to the page titles to wrap */
+            }
+                            a{
+                    color:white;
+                }
+            
+            #titleNav {
+                color:white;
+                font-family: serif;
+                background-color:black;
+                height: 79px;
+            }
+            #title {
+                padding-top:10px;
+                padding-left:8px;
+                font-size:44px;
+                font-weight:bold;
+                font-style: italic;
+                letter-spacing: 1.5px;
+                float:left;
+            }
+            #nav {
+
+                /* make this absolute (instead of float) 
+                so that it doesnt push down the content
+                when the icon is pressed and the entries 
+                show below */
+                position:fixed;
+                top:0px;
+                right:0px;
+                z-index:2;
+
+                font-size:22px;
+                letter-spacing: 1px;
+                font-weight:bold;
+                text-align:center;
+                background-color:black;
+            }
+            #navGroup {
+                display: block; 
+                
+            }
+            #navIcon {
+                padding-top: 18px;
+                width:100px;
+                box-sizing: border-box;
+                display: block;
+            }
+            .navLink {
+                width:100px;
+                border-bottom: thin solid gray;
+                padding: 4px;
+                display: block;
+                box-sizing: border-box;
+                color: white;
+                
+            }
+            .stopFloat {
+                clear:both;
+            }
+/* ------------ Desktop Only Styles --------------- */
+
+            @media screen and (min-width: 600px) {
+
+                #title { /* make font of "sally kyvernitis" a bit larger than mobileAndShared.css */
+                    font-size:36px;
+                    padding-top: 18px;
+
+                }
+                .navLink{
+                    display:inline;
+                    border:none;
+                    border-right: thin solid gray;
+                    
+                }
+                #navGroup {
+                    display:block;
+                    padding-top: 29px;
+                }
+                #navIcon {
+                    display:none;
+                }
+                                a{
+                    color:white;
+                }
+            }
+
+            h1{
+                font-family: sans-serif;
+                color: Black;
+                font-style: italic;
+                font-weight: normal;
+                font-size:25px;
+                font-variant: small-caps;
+            }
+            p{
+                font-family:"Courier New", Courier, monospace;
+                color: Black;
+                font-style: normal;
+                font-weight: normal;
+                font-size:18px;
+                font-variant:inherit;
+            }
+
+            h2{
+                font-family: sans-serif;
+                color: Black;
+                font-style: italic;
+                font-weight: normal;
+                font-size:17px;
+                letter-spacing: 1px;
+            }
+
+
+
+            h3{
+                font-family: sans-serif;
+                color: gray;
+                font-style: italic;
+                font-weight: normal;
+                font-size:16px;
+                letter-spacing: 1px;
+            }
+
+
+
+            h4{
+                font-family: sans-serif;
+                color: Black;
+                font-style: italic;
+                font-weight: normal;
+                font-size:17px;
+                letter-spacing: 1px;
+            }
+
+            h5 { /* "hero style" page titles */
+                font-family: sans-serif;
+                color: Black;
+                font-style: italic;
+                font-weight: normal;
+                font-size:20px;
+                letter-spacing: 1px;
+            }
+            
+            h6 { /* "hero style" page titles */
+                font-family: sans-serif;
+                color: Black;
+                font-style: italic;
+                font-weight: normal;
+                font-size:20px;
+                letter-spacing: 1px;
+            }
+            
+            
+            
+            .box{
+                
+                text-decoration: none;
+                font-size: 17px;
+                text-align: left;
+               
+                color: black;
+            }
+            
+            .box h1{
+                display:block;
+                padding: 14px 16px;
+                color: burlywood;
+                font-style: italic;
+                font-size: 29px;
+                
+            }
+            
+            
+            
+             button {
+                width: 375px;
+                height: 37px;
+                padding: 3px;
+                border: none;
+                outline: 0;
+                color: white;
+                background-color: #000;
+                text-align: center;
+                cursor: pointer;
+                font-size: 19px;
+                text-align: center;
+            }
+
+            button:hover, a:hover {
+                opacity: 0.7;
+            }
+            
+            
+            
+            .button {
+                width: 100%;
+                height: 37px;
+                padding: 3px;
+                border: none;
+                outline: 0;
+                align-items: center;
+                color: white;
+                background-color: #000;
+                text-align: center;
+                cursor: pointer;
+                font-size: 19px;
+                text-align: center;
+            }
+
+            .sng-page {
+                min-height: 500px; /* fallout for older browsers */
+                min-height: 100vh;
+
+                /* Dont ask me why, but I was getting a white space between pages 
+                unless I had top and bottom borders, so I provided a 1 pixel border 
+                with color blank with 0 opacity (solidness). */
+                
+            }
+
+            #footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                z-index: 2;
+                width: 100%;
+                background-color: black;
+                color:#CCCCCC;
+                letter-spacing: 0.1ex;
+                text-align: center;
+                font-weight: bold;
+                font-size: 18px;
+                padding: 12px;
+            }
+            #footer a {
+                text-decoration: none;
+                color:#CCCCCC;
+            }
+            #footer a:hover {
+                color: white;
+            }
+            
+            
+            
+              #displayPic{
+                padding-top: 50%;
+                background-image: url(pics/Beachchairs.jpg);
+                background-size: 100% 95%;
+                background-repeat:no-repeat;
+            }
+            
+            
+
+            /* colors to differentiate the pages */
+            #home {
+                background-color: white;
+               
+            } 
+            #rooms {
+                background-color: white;
+                color: black; 
+            }
+            #contact {
+                background-image: url(pics/letter4.jpg);
+                background-size: 100% 95%;
+                background-repeat:no-repeat;
+            }
+
+            
+           
+            /* ------------ Mobile and Common Styles --------------- */
+             @media screen and (min-width: 600px) {
+            body { 
+                margin: 0; padding: 0; /* avoid white line just inside browser window */
+
+                /* set up default text properties - most commonly used */
+                font-family: Tahoma, 'Arial Black', san-serif;
+                font-size: 16px;
+                background-color: white;
+                line-height: 1.5em;
+            }
+
+            .container {
+                width: 100%;
+                box-sizing: border-box; /* gets rid of horizontal scroll bar, counts padding and border in box size */
+                /* border:thin solid blue; */
+            }
+
+            .pageTitle {
+                padding: 10px 15px; /* 1st is top/bottom, 2nd is left/right */
+                background-color: gold;
+                color: black;
+                margin-bottom: -3px; /* cover up white space between title and content */
+                font-size: 1.3em;
+                line-height: 2.5em;
+            }
+
+            .one-to-three {
+                /* border:thin solid red; */
+                width: 100%;
+                padding: 15px;
+                background-color: white;
+                color: white;
+                margin: 5px 0%;  /* 1st is top/bottom, 2nd is left/right */
+                box-sizing: border-box; /* gets rid of horizontal scroll bar, counts padding and border in box size */
+            }
+                            a{
+                    color:white;
+                    text-decoration: none;
+                    font-style: italic;
+                }
+            
+             }
+
+            /* ------------ Desktop Only Styles --------------- */
+            @media screen and (min-width: 600px) {
+
+                .container {
+                    background-color: white;
+                    padding: 0px 15px;
+                }
+
+                .one-to-three {
+                    /*background-color: whitesmoke;*/
+                    padding: 5px 15px; /* 1st is top/bottom, 2nd is left/right */
+                    width: 32.3%;
+                    margin: 0px 0.5%;  /* make the width of the 3 elements plus margins total 100% */
+                    float: left;
+                }
+
+                .clear {
+                    clear:both;
+                }
+                a{
+                    color:white;
+                    text-decoration: none;
+                    font-style: italic;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        
+       
+            
+            <div id="titleNav">
+                <div id="title">
+                    World Destinations
+                </div>
+                <div id="nav">
+                    <div id="navIcon" onclick="iconClicked()">
+                        <img src="pics/navbar.png" alt="" width="43"/>
+                    </div>
+                    <div id="navGroup">
+                        <div class="navLink"><a href="#home">Home</a></div>
+                        <div class="navLink"><a href="#rooms">Rooms</a></div>
+                        <div class="navLink"><a href="#contact">Contact</a></div>
+                        <div class="navLink"><a href="labs.html">Labs</a></div>
+
+                    </div>
+                </div>  <!--  end of nav -->
+            </div>  <!--  end of titleNav -->
+
+
+        <!-- Page 1 -->
+        <div id="home" class="sng-page">
+
+            <div id="displayPic"> </div>
+             
+        </div>
+        
+
+        <!-- Page 2 -->
+        <div id="rooms" class="sng-page">
+            <div class="box" id="box h1">
+                    
+                    <h1>Rooms</h1>
+                    </div>
+
+            
+            
+        <div class="container">
+            
+            <div class="one-to-three">
+              
+
+                                
+                                    <p><img src="pics/room_single.jpg" alt="Rooms" style="width:100%;"></p>
+                                    <h2>Single Rooms</h2>
+                                    <h3> From $99 </h3>
+                                    <h4> Single Bed </h4>
+                                    <p>15m<sup>2</sup></p>
+                                    <div class ="button" style="vertical-align: middle"><span>
+                                            Choose Room</span>
+                                    </div>
+
+                                
+                            
+            </div>
+
+            <div class="one-to-three">
+               
+
+                                
+                                    <p><img src="pics/room_double.jpg" alt="Rooms" style=" width:100%;"></p>
+                                    <h2>Single Rooms</h2>
+                                    <h3> From $149 </h3>
+                                    <h4> Single Bed </h4>
+                                    <p>25m<sup>2</sup></p>
+                                    <div class ="button" >
+                                        Choose Room
+                                    </div>
+
+                                
+                            </div>
+            
+
+            <div class="one-to-three">
+           
+
+                               
+                                    <p> <img src="pics/room_deluxe.jpg" alt="Rooms" style=" width:100%;"></p>
+                                    <h2>Deluxe Rooms</h2>
+                                    <h3> From $199 </h3>
+                                    <h4> King Size Bed </h4>
+                                    <p>45m<sup>2</sup></p>
+                                    <div class ="button">
+                                        Choose Room
+                                    </div>
+
+                                
+                            </div>
+            
+
+           
+
+        </div> <!-- end container -->
+         <div class="clear"></div>
+        </div>
+
+        <!-- Page 3 -->
+        <div id="contact" class="sng-page">
+            <div class="box" id="box h1">
+                    
+                    <h1>Contact Us</h1>
+                    </div>
+
+  
+        <form name="myForm" method="post" action="http://www.temple.edu/cgi-bin/mail?tug63393@temple.edu">    
+           
+            <div class="container">
+            <div class="one-to-three">
+
+                <h4>
+
+            Customer Name?   <input type="text" name="userName" placeholder="plain text input" required/>  <br/> 
+            <br/> 
+            <br/> 
+            
+            Are you currently staying with us?   <br/>    <input type="radio" name="cust" value="T" required />   Yes    
+            <input type="radio" name="cust"  value="N" required  />    No  <br/> 
+            
+            <br/> 
+            <br/>
+            Check this if you are happy with our service: <input type="checkbox" name="isCisMajor"  />  <br/> 
+            
+            <br/> 
+            <br/>
+            
+            which type of room are you in?
+            <select name="collegeClass" >
+                <option value="Si" >Single</option>
+                <option value="Do">Double</option>
+                <option value="De">Deluxe</option>
+                <option value="NaS">Other</option>
+
+            </select>     <br/> <br/></div>
+                
+                
+                </h4>
+                <div class="one-to-three">
+            <h1>Leave us a message? </h1><br/>
+            <textarea name="inputcomments" cols="45" rows="5" required>Type your comments here</textarea> <br/> <br/>
+            <input type="submit" value=" Send " />
+                 </div>
+                </div>
+            </form>
+        <br/>
+            
+
+        
+            </div>
+                
+
+        <footer id="footer">
+            
+            (Paurav Patel)
+        </footer>
+
+        <!-- Jquery -->
+        <script src="./Single Page_files/jquery.min.js"></script>
+        <script>
+
+            // Wait until all elements exist on the page before trying to reference anything ...
+            $(document).ready(function () {
+
+                // $('a[href^="#"]') --> thia selector applies to all <a> elements with a href attribute that starts with "#".
+                //    Learned this from   http://www.w3schools.com/jquery/jquery_ref_selectors.asp
+                $('a[href^="#"]').click(function () {
+
+                    // "this" means the element involved in the event, so, the link that was clicked.
+                    console.log("this");
+                    console.log(this); // if you console.log an object, you'll see nice tree view
+                    // of the object's properties in the console (F12 from Chrome)
+                    console.log("-");
+
+                    // ".hash" refers to the href attribute of the <a> tag. So, if <a href="#page1">
+                    // was clicked, then "this.hash" has this value: "#page1"
+                    console.log("this.hash");
+                    console.log(this.hash);
+                    console.log("-");
+
+                    // $ is a jQuery function which returns a jQuery object that references the
+                    // specified HTML element. For example, $("#content") returns a jQuery
+                    // object that references the HTML element with id="content". This object also has
+                    // loads of contextual information (e.g., parent, siblings, and many other properties.
+
+                    // So, variable "target" references a jQuery object that the user clicked. 
+                    var target = $(this.hash);
+                    console.log("$(this.hash)");
+                    console.log(target);
+                    console.log("-");
+
+                    // This if statement will run if target.length exists.
+                    if (target.length) {
+
+                        // animate is a jQuery function (what_to_do, how_fast_in_millisecs). 
+                        // "what_to_do" is an object with any number of CSS property/value pairs:
+                        /*
+                         * $("button").click(function(){
+                         $("div").animate({
+                         left: '250px',
+                         opacity: '0.5',
+                         height: '150px'
+                         },500);
+                         }); 
+                         */
+                        // 
+                        // scrollTop is a javaScript property of any DOM element. 
+                        // It measures the number of pixels from the DOM element to the top of 
+                        // of the DOM element's scrollable parent element.
+                        //           see http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_scrollleft
+                        // 
+                        // .offset() is a function (of any jQuery object) that returns an object with 
+                        // top and left properties (top/left relative to the document).
+
+                        $('html, body').animate({
+                            // set the scrollTop property (of the browser)
+                            // to be the top attribute of the element being linked to
+                            scrollTop: target.offset().top
+                        }, 900);  // but do it a bit slow (900 millisecs)
+                    }
+
+                });
+
+            });
+        </script>
+        
+        <script>
+
+            // returns a reference to the HTML element with the given id
+            function my$(id) {
+                return document.getElementById(id);
+            }
+
+            // This function is invoked whenever the navIcon is clicked -- because of the 
+            // <div id="navIcon" onclick="iconClicked()"> tag in the HTML.
+            function iconClicked() {
+                var navGroup = my$("navGroup");
+                var navDisplay = getComputedStyle(navGroup).display;
+                if (navDisplay === "block") {
+                    my$("navGroup").style.display = "none";
+                } else {
+                    my$("navGroup").style.display = "block";
+                }
+                console.log("icon Clicked. navGroup is " + my$("navGroup").style.display);
+            }
+
+
+            // Global declarations **************************************************
+            var navIcon = my$("navIcon"); // reference to the "navIcon" div
+
+            // This is the initial display attribute (block or none) - depends on the 
+            // size of browser at page refresh time. 
+            // I had to use getComputedStyle (per internet search) rather than just 
+            // navIcon.style.display because the initial setting is set by CSS not javaScript.
+            var iconDisplay = getComputedStyle(navIcon).display;
+            console.log("initial iconDisplay is " + iconDisplay);
+
+            // We want to have certain behavior when the browser first "gets small" 
+            // (converts to mobile layout) and when the browser first "gets big" 
+            // (converts to desktop layout). So we have to track the previous value 
+            // as well as the current value.
+            var previousIconDisplay = iconDisplay;
+            // End of Global declarations **************************************************
+
+
+            // This function is invoked whenever the browser is resized -- because of the 
+            // <body> tag in the HTML: <body onresize="resize()">
+            function resize() {
+                previousIconDisplay = iconDisplay;
+                iconDisplay = getComputedStyle(navIcon).display;
+                console.log("resized. iconDisplay is " + iconDisplay);
+
+                if (iconDisplay === "none" && previousIconDisplay === "block") {
+                    console.log("sized big - show nav group");
+                    my$("navGroup").style.display = "block";
+
+                }
+                if (iconDisplay === "block" && previousIconDisplay === "none") {
+                    console.log("sized small - hide nav group");
+                    my$("navGroup").style.display = "none";
+                }
+            }
+
+        </script>
+
+        
+        
+        
+    
+</body>
+</html>
